@@ -5,7 +5,7 @@ This module contains some handlers for the datasnapshot messages
 import stomp
 import threading
 import json
-from apierror import APIError
+from APIv2.apierror import APIError
 
 class RequestReplyHandler(stomp.ConnectionListener):
     """

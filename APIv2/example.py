@@ -10,11 +10,10 @@ from functools import partial
 from websocket._exceptions import WebSocketBadStatusException
 from time import sleep
 
-import credentials
-from requestreplyhandler import RequestReplyHandler
-from taglistener import TagListener
-from websocketclienttransport import WebsocketConnection
-
+from APIv2 import credentials
+from APIv2.requestreplyhandler import RequestReplyHandler
+from APIv2.taglistener import TagListener
+from APIv2.websocketclienttransport import WebsocketConnection
 
 class Example(object):
     """
@@ -185,11 +184,9 @@ def main(ewon_name, credentials_file, log_level, get_account):
     print("Disconnecting...")
     example.disconnect()
 
-
-
-if __name__ == '__main__':
-
+def launch():
     #We want unbuffered stdout, let's flush every print
+    global print
     print = partial(print, flush=True)
 
     PARSER = argparse.ArgumentParser(description='T2M Live Data example program')
@@ -219,3 +216,7 @@ if __name__ == '__main__':
         help='Get account information')    
     ARGS = PARSER.parse_args()
     main(ARGS.ewon_name, ARGS.c, ARGS.d, ARGS.a)
+
+if __name__ == '__main__':
+    launch()
+
